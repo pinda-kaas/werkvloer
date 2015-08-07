@@ -1,0 +1,6 @@
+.tmp/
+*.iml
+.idea/
+/.settings
+node_modules/
+bower_components

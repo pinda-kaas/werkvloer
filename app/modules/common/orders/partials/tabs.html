@@ -1,0 +1,88 @@
+<div class="main">
+
+    <div class="row search">
+        <div class="col-lg-12">
+            Account Search:
+            <input type="text" ng-model="accountName" id="field4" placeholder="Search by account name or number"/>
+            <i class="fa fa-search"></i>
+        </div>
+    </div>
+
+    <div class="resetFilter">
+        <a href="#" ng-click="key='';accountName='' ">Reset Filter</a>
+        &nbsp<a href="#">Refresh</a> <i class="fa fa-file-excel-o"></i>
+
+        <!--<a class="btn btn-danger" ng-mousedown="csv.generate()" ng-href="{{ csv.link() }}" download="data.csv">Export</a>-->
+        <a ng-mousedown="csv.generate()" ng-href="{{ csv.link() }}" download="test.csv">Export to CSV</a>
+
+        <i class="fa fa-print"></i> </i><a href="#">Print</a>
+    </div>
+
+    <div class="orders" ng-controller="OrdersCtrl">
+        <div>
+            <div>
+                <div>
+                    <tabset>
+
+                        <tab heading="Orders" active="tab.active">
+                            <div>
+                                <div class="mainTable">
+                                    <!--<span id="noOrders" ng-hide="noOrders">There are no orders which match your criteria. Please try again.</span>-->
+                                    <span id="nrResults">{{filtered.length}} results match your search selection.</span>
+
+                                    <order-table></order-table>
+
+                                </div>
+                            </div>
+                        </tab>
+
+                        <tab heading="Awaiting settlement">
+
+                            <settlements-table></settlements-table>
+
+                        </tab>
+
+
+
+                        <tab heading="Complete">
+                           <complete-orders-table></complete-orders-table>
+                        </tab>
+                    </tabset>
+                </div>
+
+                <script type="text/ng-template" id="custom/pager">
+
+                    <ul class="pager ng-cloak">
+                        <li ng-repeat="page in pages"
+                            ng-class="{'disabled': !page.active, 'previous': page.type == 'prev', 'next': page.type == 'next'}"
+                            ng-show="page.type == 'prev' || page.type == 'next'" ng-switch="page.type">
+
+                            <a ng-switch-when="prev" ng-click="params.page(page.number)" href="">&laquo; Previous</a>
+                            <a ng-switch-wxhen="next" ng-click="params.page(page.number)" href="">Next &raquo;</a>
+                        </li>
+                        <li>
+                            <div class="btn-group">
+                                <button type="button" ng-class="{'active':params.count() == 10}"
+                                        ng-click="params.count(10)"
+                                        class="btn btn-default">10
+                                </button>
+                                <button type="button" ng-class="{'active':params.count() == 25}"
+                                        ng-click="params.count(25)"
+                                        class="btn btn-default">25
+                                </button>
+                                <button type="button" ng-class="{'active':params.count() == 50}"
+                                        ng-click="params.count(50)"
+                                        class="btn btn-default">50
+                                </button>
+                                <button type="button" ng-class="{'active':params.count() == 100}"
+                                        ng-click="params.count(100)" class="btn btn-default">100
+                                </button>
+                            </div>
+                        </li>
+                    </ul>
+                </script>
+
+            </div>
+        </div>
+    </div>
+</div>

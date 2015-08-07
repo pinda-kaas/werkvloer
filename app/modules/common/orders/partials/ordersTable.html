@@ -1,0 +1,26 @@
+<table ng-table="tableParams" template-pagination="custom/pager"
+       export-csv="$parent.csv" class="table">
+    <tr
+            ng-repeat="account in $parent.filtered =($data | filter:accountName)"
+            class="orders tablerow">
+
+        <td data-title="'ID'" sortable="'account.accountId.key'">
+            {{account.account.accountId.key}}
+        </td>
+
+        <td class="accountName" data-title="'Account'"
+            sortable="'account.accountName'">
+            {{account.account.accountName}}
+        </td>
+        <td data-title="'Adviser'" sortable="'account.adviser.key'">
+            {{account.account.adviser.key}}
+        </td>
+        <td class="productName" data-title="'Product'"
+            sortable="'account.productName'">
+            {{account.account.productName}}
+        </td>
+        <td class="status" data-title="'Status'" sortable="'minOpenOrderState'">
+            {{account.minOpenOrderState}}
+        </td>
+    </tr>
+</table>
